@@ -4,3 +4,4 @@ certifi>=2024.2.2
 python-dotenv>=1.0,<2.0
 gunicorn
 supabase
+gunicorn
