@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="mn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title }} · INaRa</title>
+  {% include "_fonts.html" %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="error-page">
+  <main class="error-card">
+    <img src="{{ url_for('static', filename='inara-logo.png') }}" alt="INaRa лого" class="error-logo">
+    <p class="eyebrow">АЛДАА · {{ status }}</p>
+    <h1>{{ title }}</h1>
+    <p class="muted">{{ message }}</p>
+    <a class="property-submit error-link" href="{{ url_for('dashboard') if logged_in else url_for('login_page') }}">
+      {{ "Самбар руу буцах" if logged_in else "Нэвтрэх хуудас руу буцах" }}
+    </a>
+  </main>
+</body>
+</html>

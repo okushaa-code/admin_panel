@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="mn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Нэвтрэх · INaRa</title>
+  {% include "_fonts.html" %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="login-page">
+  <main class="login-layout">
+    <section class="brand-panel" aria-label="INaRa">
+      <img class="brand-logo" src="{{ url_for('static', filename='inara-logo.png') }}"
+           alt="INaRa үл хөдлөх хөрөнгийн агентлагийн лого">
+      <div class="brand-message">
+        <p class="eyebrow">ТАНИЛ ОРОН ЗАЙ · ИТГЭЛТЭЙ СОНГОЛТ</p>
+        <h1>Таны шинэ гэр<br>эндээс эхэлнэ.</h1>
+        <p class="brand-description">Монгол гэрийн дулаан уур амьсгал, үл хөдлөх хөрөнгийн итгэлтэй үйлчилгээ.</p>
+      </div>
+      <p class="brand-foot">Улаанбаатар <span aria-hidden="true">·</span> Дубай <span aria-hidden="true">·</span> Пхукет</p>
+    </section>
+    <section class="form-panel">
+      <form class="login-card" action="{{ url_for('login') }}" method="post" novalidate>
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <p class="eyebrow">ТАВТАЙ МОРИЛ</p>
+        <h2>Самбарт нэвтрэх</h2>
+        <p class="muted">Байр, цаг товлолт, зурвасаа нэг дороос удирдаарай.</p>
+        {% if error %}<p class="alert" role="alert" id="login-error">{{ error }}</p>{% endif %}
+        <label for="email">И-мэйл хаяг</label>
+        <input id="email" name="email" type="email" autocomplete="username" value="{{ email }}"
+               placeholder="И-мэйл хаягаа бичнэ үү" required autofocus
+               {% if error %}aria-describedby="login-error" aria-invalid="true"{% endif %}>
+        <label for="password">Нууц үг</label>
+        <input id="password" name="password" type="password"
+               autocomplete="current-password" placeholder="Нууц үгээ оруулна уу" required
+               {% if error %}aria-describedby="login-error" aria-invalid="true"{% endif %}>
+        <button class="primary-button" type="submit">Нэвтрэх <span aria-hidden="true">→</span></button>
+        <p class="secure-note"><span aria-hidden="true">●</span> Зөвхөн INaRa-ийн ажилтнуудад зориулсан хэсэг.</p>
+      </form>
+    </section>
+  </main>
+</body>
+</html>
